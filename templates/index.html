@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Monitor</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>System Monitor</h1>
+    <p>CPU Usage: <span id="cpu_usage"></span>%</p>
+    <p>RAM Usage: <span id="ram_usage"></span>%</p>
+    <p>Disk Usage: <span id="disk_usage"></span>%</p>
+    <p>GPU Usage: <span id="gpu_usage"></span>%</p>
+    <script>
+    $(document).ready(function(){
+        setInterval(function(){
+            $.getJSON('/system_info', function(data) {
+                $('#cpu_usage').text(data.cpu_usage);
+                $('#ram_usage').text(data.ram_usage);
+                $('#disk_usage').text(data.disk_usage);
+                $('#gpu_usage').text(data.gpu_usage);
+            });
+        }, 1000);
+    });
+    </script>
+</body>
+</html>
